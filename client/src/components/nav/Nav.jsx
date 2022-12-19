@@ -2,50 +2,34 @@ import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { hidden, visible, activeStyle, inactiveStyle } from "./navStyle";
+import { context } from "../Context";
 
 function Nav() {
-  const [display, setDisplay] = React.useState(false);
+  const { state, dispatch } = React.useContext(context);
+
   return (
     <React.Fragment>
       <RxHamburgerMenu
-        onClick={() => setDisplay(!display)}
+        onClick={() => dispatch({ type: "HAMBURGER" })}
         className="hamburgerMenu"
       />
-      <nav className="nav" style={display ? visible : hidden}>
-        <Links
-          route="/"
-          path="Home"
-          display={display}
-          setDisplay={setDisplay}
-        />
-        <Links
-          display={display}
-          setDisplay={setDisplay}
-          route="department"
-          path="Department"
-        />
-        <Links
-          display={display}
-          setDisplay={setDisplay}
-          route="login"
-          path="Login"
-        />
-        <Links
-          display={display}
-          setDisplay={setDisplay}
-          route="register"
-          path="Register"
-        />
+      <nav className="nav" style={state.display ? visible : hidden}>
+        <Links route="/" path="Home" />
+        <Links route="department" path="Department" />
+        <Links route="login" path="Login" />
+        <Links route="register" path="Register" />
       </nav>
       <Outlet />
     </React.Fragment>
   );
 }
 
-function Links({ route, path, display, setDisplay }) {
+function Links({ route, path }) {
+  const { dispatch } = React.useContext(context);
+
   return (
     <NavLink
-      onClick={() => setDisplay(!display)}
+      onClick={() => dispatch({ type: "HAMBURGER" })}
       style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
       end
       to={route}

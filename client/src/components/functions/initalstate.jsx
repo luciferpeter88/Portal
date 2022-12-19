@@ -1,5 +1,5 @@
 const initialState = {
-  test: "punci",
+  display: false,
 };
 
 export default initialState;
