@@ -1,5 +1,73 @@
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+:root {
+  --mainColor: rgb(244, 244, 244);
+  --secondaryColor: rgb(237, 181, 7);
+}
+
+/* start nav */
+.nav {
+  height: 10rem;
+  width: 10rem;
+  background-color: var(--mainColor);
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-transform: uppercase;
+  border-radius: 10px;
+  transition: all 0.7s linear;
+  position: absolute;
+  top: 0.5rem;
+}
+.hamburgerMenu {
+  font-size: 2rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--mainColor);
+}
+
+/* end of nav */
+
+/* start home page */
+.homeFragment {
+  height: 100vh;
+  background-color: var(--mainColor);
+}
+.homeHeader {
+  height: 40vh;
+  background: url("./assets/my-daughter.png") no-repeat center / cover;
+}
+.homeMain {
+  height: 50vh;
+  padding: 1rem;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--mainColor);
+}
+.homeMain > h1 {
+  margin-top: auto;
+  font-size: 2.75rem;
+}
+
+.homeButton {
+  height: 3rem;
+  width: 15rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 auto;
+  margin-top: auto;
+  cursor: pointer;
+  color: var(--mainColor);
+  background-color: var(--secondaryColor);
+  border-radius: 7.5px;
+  border: none;
 }

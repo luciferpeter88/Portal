@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Nav from "./components/Nav";
+import Nav from "./components/nav/Nav";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Department from "./pages/Department";
@@ -12,9 +12,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Nav />}>
             <Route index element={<Home />} />
-            <Route path="branches" element={<Login />} />
-            <Route path="issues" element={<Department />} />
-            <Route path="originmaster" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="department" element={<Department />} />
+            <Route path="register" element={<Register />} />
           </Route>
         </Routes>
       </BrowserRouter>

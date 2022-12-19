@@ -1,5 +1,5 @@
 const initialState = {
-  test: "segg",
+  test: "punci",
 };
 
 export default initialState;
