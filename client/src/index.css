@@ -74,7 +74,7 @@
   align-items: center;
 }
 .homeHeader > img {
-  height: 50%;
+  height: 45%;
 }
 .homeMain {
   grid-area: main;
@@ -116,6 +116,22 @@
     width: 25rem;
     background-color: var(--thirdaryColor);
     border-radius: 50%;
+  }
+}
+@media (min-width: 1150px) {
+  .homeFragment {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .homeHeader {
+    width: 50%;
+  }
+  .homeMain {
+    width: 50%;
+  }
+  .homeBubble {
+    height: 30rem;
+    width: 35rem;
   }
 }
 
@@ -165,6 +181,7 @@
   outline: none;
   border-radius: 5px;
   border: none;
+  width: 100%;
 }
 .registerButton {
   height: 2.5rem;
@@ -178,17 +195,30 @@
   border-radius: 7.5px;
   border: none;
 }
-.registerContainer > p {
+.registerContainer > .registerMain > p {
   text-align: center;
   padding-bottom: 1rem;
 }
-.registerContainer > p > span {
+.registerContainer > .registerMain > p > span {
   color: var(--secondaryColor);
 }
 
 @media (min-width: 760px) {
   .registerMain > input {
     width: 70%;
+  }
+}
+@media (min-width: 1150px) {
+  .registerContainer {
+    flex-direction: row-reverse;
+  }
+  .registerMain,
+  .registerPiccontainer {
+    height: 100%;
+    width: 50%;
+  }
+  .registerPiccontainer > img {
+    height: 70%;
   }
 }
 
@@ -205,7 +235,7 @@
 .loginPicture {
   height: 35%;
   position: relative;
-  background-color: rgb(252, 244, 227);
+  background-color: var(--thirdaryColor);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,12 +252,13 @@
   left: 0;
   background-color: rgb(252, 244, 227, 0.3);
 }
-.login > h2 {
+.login > .loginContainer > h2 {
   font-size: 2.5rem;
   text-align: center;
 }
 
 .loginContainer {
+  height: 65%;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -242,17 +273,39 @@
   outline: none;
   border-radius: 5px;
   border: none;
+  width: 100%;
 }
-.login > p {
+.loginContainer > h2 {
+  margin-top: auto;
+}
+.login > .loginContainer > p {
   text-align: center;
+  margin-top: auto;
   padding-bottom: 1rem;
 }
-.login > p > span {
+.login > .loginContainer > p > span {
   color: var(--secondaryColor);
 }
 @media (min-width: 760px) {
   .loginContainer > input {
     width: 70%;
+  }
+}
+@media (min-width: 1150px) {
+  .login {
+    flex-direction: row;
+    flex-direction: row-reverse;
+  }
+  .loginPicture,
+  .loginContainer {
+    height: 100%;
+    width: 50%;
+  }
+  .login > .loginContainer > p {
+    margin: 0;
+  }
+  .loginContainer > h2 {
+    margin-top: 0;
   }
 }
 /* end of login page */
