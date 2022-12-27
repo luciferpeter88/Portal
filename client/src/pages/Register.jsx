@@ -1,10 +1,13 @@
 import React from "react";
+import register from "../assets/registerpic.png";
 
 function Register() {
   return (
     <div>
       <div className="registerContainer">
-        <div className="registerPiccontainer"></div>
+        <div className="registerPiccontainer">
+          <img src={register} />
+        </div>
         <form className="registerMain">
           <input type="text" placeholder="Username" />
           <input type="email" placeholder="Email" />

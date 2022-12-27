@@ -15,7 +15,7 @@ const activeStyle = {
 };
 
 const inactiveStyle = {
-  backgroundColor: "rgb(244, 244, 244)",
+  backgroundColor: "transparent",
   textDecoration: "none",
   padding: "5px",
   color: "black",

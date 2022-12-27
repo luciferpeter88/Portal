@@ -34,6 +34,12 @@ function Nav() {
         <Links route="login" path="Login" />
         <Links route="register" path="Register" />
       </nav>
+      <nav className="navLargescreen">
+        <Links route="/" path="Home" />
+        <Links route="department" path="Department" />
+        <Links route="login" path="Login" />
+        <Links route="register" path="Register" />
+      </nav>
       <Outlet />
     </React.Fragment>
   );

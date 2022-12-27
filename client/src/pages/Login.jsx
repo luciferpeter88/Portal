@@ -1,10 +1,13 @@
 import React from "react";
+import login from "../assets/loginB.png";
 
 function Login() {
   return (
     <React.Fragment>
       <div className="login">
-        <div className="loginPicture"></div>
+        <div className="loginPicture">
+          <img src={login} />
+        </div>
         <h2>Welcome Back</h2>
         <form className="loginContainer">
           <input type="email" placeholder="Email" />
@@ -14,7 +17,7 @@ function Login() {
           Sign In
         </button>
         <p>
-          Dont't I have an account? <span>Sign Up</span>
+          Dont't have an account? <span>Sign Up</span>
         </p>
       </div>
     </React.Fragment>
