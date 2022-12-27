@@ -4,6 +4,21 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { hidden, visible, activeStyle, inactiveStyle } from "./navStyle";
 import { context } from "../Context";
 
+function Links({ route, path }) {
+  const { dispatch } = React.useContext(context);
+
+  return (
+    <NavLink
+      onClick={() => dispatch({ type: "HAMBURGER" })}
+      style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+      end
+      to={route}
+    >
+      {path}
+    </NavLink>
+  );
+}
+
 function Nav() {
   const { state, dispatch } = React.useContext(context);
 
@@ -21,21 +36,6 @@ function Nav() {
       </nav>
       <Outlet />
     </React.Fragment>
-  );
-}
-
-function Links({ route, path }) {
-  const { dispatch } = React.useContext(context);
-
-  return (
-    <NavLink
-      onClick={() => dispatch({ type: "HAMBURGER" })}
-      style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
-      end
-      to={route}
-    >
-      {path}
-    </NavLink>
   );
 }
 

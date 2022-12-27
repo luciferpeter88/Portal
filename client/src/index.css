@@ -11,10 +11,8 @@
 /* start nav */
 .nav {
   height: 10rem;
-  width: 11.5rem;
   background-color: var(--mainColor);
   font-size: 1.3rem;
-  padding: 0.5rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -23,6 +21,9 @@
   transition: all 0.7s linear;
   position: absolute;
   top: 0.5rem;
+  right: 0.5rem;
+  overflow: hidden;
+  /* display: none; */
 }
 .hamburgerMenu {
   font-size: 2rem;
@@ -43,7 +44,6 @@
     "main main main";
   grid-template-rows: 35% 65%;
   background-color: var(--mainColor);
-  overflow: hidden;
 }
 .homeHeader {
   grid-area: header;

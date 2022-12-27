@@ -1,10 +1,9 @@
 const hidden = {
-  transform: "translateX(100vw)",
-  position: "absolute",
+  width: "0",
 };
 const visible = {
-  transform: "translateX(50vw)",
-  position: "absolute",
+  padding: "0.5rem",
+  width: "11.5rem",
 };
 
 const activeStyle = {
