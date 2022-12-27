@@ -1,9 +1,9 @@
 const hidden = {
-  transform: "translateX(400px)",
+  transform: "translateX(100vw)",
   position: "absolute",
 };
 const visible = {
-  transform: "translateX(220px)",
+  transform: "translateX(50vw)",
   position: "absolute",
 };
 
