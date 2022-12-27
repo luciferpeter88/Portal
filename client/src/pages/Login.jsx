@@ -8,17 +8,17 @@ function Login() {
         <div className="loginPicture">
           <img src={login} />
         </div>
-        <h2>Welcome Back</h2>
         <form className="loginContainer">
+          <h2>Welcome Back</h2>
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
+          <button className="registerButton " type="submit">
+            Sign In
+          </button>
+          <p>
+            Dont't have an account? <span>Sign Up</span>
+          </p>
         </form>
-        <button className="registerButton " type="submit">
-          Sign In
-        </button>
-        <p>
-          Dont't have an account? <span>Sign Up</span>
-        </p>
       </div>
     </React.Fragment>
   );
