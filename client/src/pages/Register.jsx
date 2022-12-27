@@ -4,7 +4,7 @@ function Register() {
   return (
     <div>
       <div className="registerContainer">
-        <h2 className="registerh2">Create Your Account</h2>
+        <div className="registerPiccontainer"></div>
         <form className="registerMain">
           <input type="text" placeholder="Username" />
           <input type="email" placeholder="Email" />
@@ -12,8 +12,12 @@ function Register() {
           <input type="password" placeholder="Password" />
           <input type="password" placeholder="Confirm Password" />
         </form>
-        <button type="submit">Sign up</button>
-        <p>Already have an account? Sign In</p>
+        <button className="registerButton" type="submit">
+          Sign up
+        </button>
+        <p>
+          Already have an account? <span>Sign In</span>
+        </p>
       </div>
     </div>
   );
