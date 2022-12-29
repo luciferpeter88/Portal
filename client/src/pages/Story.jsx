@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import YouTube from "react-youtube";
 import { useParams, useNavigate } from "react-router-dom";
 import { context } from "../components/Context";
