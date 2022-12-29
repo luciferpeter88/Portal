@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 :root {
   --mainColor: rgb(244, 244, 244);
@@ -107,10 +108,14 @@
   display: none;
 }
 @media (min-width: 760px) {
+  .homeFragment {
+    position: relative;
+    overflow: hidden;
+  }
   .homeBubble {
     display: block;
     position: absolute;
-    bottom: -15%;
+    bottom: -22%;
     left: -15%;
     height: 25rem;
     width: 25rem;
@@ -128,10 +133,6 @@
   }
   .homeMain {
     width: 50%;
-  }
-  .homeBubble {
-    height: 30rem;
-    width: 35rem;
   }
 }
 
@@ -172,8 +173,8 @@
   gap: 1.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  justify-content: center;
   align-items: center;
+  height: 58%;
 }
 .registerMain > input {
   height: 3.2rem;
@@ -198,6 +199,7 @@
 .registerContainer > .registerMain > p {
   text-align: center;
   padding-bottom: 1rem;
+  margin-top: auto;
 }
 .registerContainer > .registerMain > p > span {
   color: var(--secondaryColor);
@@ -216,6 +218,12 @@
   .registerPiccontainer {
     height: 100%;
     width: 50%;
+  }
+  .registerContainer > .registerMain > p {
+    margin-top: 0;
+  }
+  .registerMain {
+    justify-content: center;
   }
   .registerPiccontainer > img {
     height: 70%;
@@ -293,7 +301,6 @@
 }
 @media (min-width: 1150px) {
   .login {
-    flex-direction: row;
     flex-direction: row-reverse;
   }
   .loginPicture,
@@ -309,3 +316,75 @@
   }
 }
 /* end of login page */
+
+/* start department page */
+.department {
+  min-height: 100vh;
+  background-color: var(--mainColor);
+  display: flex;
+  flex-direction: column;
+}
+.departmentPicture {
+  height: 35vh;
+  background-color: var(--thirdaryColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.departmentPicture > img {
+  height: 90%;
+}
+.departmentCardsContainer {
+  overflow-x: hidden;
+  margin-top: 2rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.departmentCard {
+  background-color: #e2ecff;
+  border: 2px solid var(--secondaryColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.departmentCard > img {
+  height: 30vh;
+  width: 80vw;
+}
+.departmentContainer {
+  display: flex;
+  flex-direction: column;
+}
+.departmentContainer > button {
+  margin: 1.5rem auto;
+}
+@media (min-width: 760px) {
+  .departmentCardsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .departmentCard > img {
+    width: 40vw;
+  }
+}
+@media (min-width: 1150px) {
+  .department {
+    flex-direction: row-reverse;
+  }
+  .departmentPicture {
+    width: 50vw;
+    height: 100vh;
+  }
+  .departmentCardsContainer {
+    width: 50vw;
+  }
+  .departmentCardsContainer {
+    margin-top: 0;
+    height: 100vh;
+  }
+}
+/* end of department page */
