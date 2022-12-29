@@ -388,3 +388,36 @@
   }
 }
 /* end of department page */
+
+/* start story page */
+
+.storyContainer {
+  height: 100vh;
+  background-color: var(--mainColor);
+  display: flex;
+  flex-direction: column;
+}
+.storyPic {
+  height: 35%;
+  background-color: var(--thirdaryColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.storyPic > img {
+  height: 80%;
+}
+.storyVideo {
+  height: 65%;
+  background-color: var(--mainColor);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+.storyVideo > h2 {
+  text-transform: capitalize;
+  color: var(--secondaryColor);
+}
+
+/* end of story page */
