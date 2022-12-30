@@ -8,4 +8,22 @@ const surgeryKey = "6HCQl2cTg_M";
 const bloodtestKey = "n4wkWxZp044";
 const wardKey = "voYrbZY6ZyA";
 
-export { mri, surgery, blood, ward, mriKey, surgeryKey, bloodtestKey, wardKey };
+const opts = {
+  height: "390",
+  width: "390",
+  playerVars: {
+    autoplay: 1,
+  },
+};
+
+export {
+  mri,
+  surgery,
+  blood,
+  ward,
+  mriKey,
+  surgeryKey,
+  bloodtestKey,
+  wardKey,
+  opts,
+};

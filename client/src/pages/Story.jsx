@@ -1,19 +1,12 @@
 import React from "react";
 import YouTube from "react-youtube";
+import { opts } from "../components/data/variables";
 import { useParams, useNavigate } from "react-router-dom";
 import { context } from "../components/Context";
 function Story() {
   const { state } = React.useContext(context);
   const navigate = useNavigate();
   const { storyName } = useParams();
-
-  const opts = {
-    height: "390",
-    width: "390",
-    playerVars: {
-      autoplay: 1,
-    },
-  };
 
   return (
     <React.Fragment>
