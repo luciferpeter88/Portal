@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const express = require("express");
-const app = express();
 const url =
   "mongodb+srv://Peter:12345@portal.1xoweve.mongodb.net/Portal?retryWrites=true&w=majority";
 

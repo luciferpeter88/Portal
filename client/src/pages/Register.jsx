@@ -44,7 +44,7 @@ function Register() {
             password: password,
             confirmPassword: confirmPassword,
           });
-          console.log(post);
+          console.log(post.data);
           dispatch({
             type: "USER_REGITRATION",
             isEmailReserved: post.data.isAuthenticated,
