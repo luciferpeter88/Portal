@@ -47,7 +47,7 @@ function Register() {
           console.log(post.data);
           dispatch({
             type: "USER_REGITRATION",
-            isEmailReserved: post.data.isAuthenticated,
+            isEmailReserved: post.data.isEmailReserved,
           });
 
           // if the server response is true, the user is succesfully registered to the website

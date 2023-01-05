@@ -14,7 +14,7 @@ router.post("/", async (request, response) => {
     const findEmail = data.some((db) => db.email === email);
     // if the email exists in the db,than we are not going to allow to register the user
     if (findEmail) {
-      response.send({ isAuthenticated: false });
+      response.send({ isEmailReserved: true });
     } else {
       // create a Scheme for users
       const regUserScheme = new mongoose.Schema({
@@ -37,7 +37,7 @@ router.post("/", async (request, response) => {
           console.log(err);
         } else {
           console.log(doc);
-          response.send({ isAuthenticated: true });
+          response.send({ isEmailReserved: false });
         }
       });
     }
