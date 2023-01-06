@@ -170,7 +170,7 @@
 .registerMain {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
   align-items: center;

@@ -7,8 +7,7 @@ const initialState = {
   userLogin: {
     email: "",
     password: "",
-    emailValidation: "",
-    passwordValidation: "",
+    response: "",
     isAuthenticated: false,
   },
   userRegistration: {
@@ -22,7 +21,7 @@ const initialState = {
     phoneNumberValidation: "",
     passwordValidation: "",
     confirmPasswordValidation: "",
-    isEmailReserved: false,
+    isEmailReserved: null,
   },
 };
 

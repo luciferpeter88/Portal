@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 // import the connection from the config.db
 require("../config/db");
-const { connection, default: mongoose } = require("mongoose");
+// import the user schema
+const User = require("../mongoose/regSchema");
+const { connection } = require("mongoose");
 
 router.post("/", async (request, response) => {
   try {
@@ -16,13 +18,6 @@ router.post("/", async (request, response) => {
     if (findEmail) {
       response.send({ isEmailReserved: true });
     } else {
-      // create a Scheme for users
-      const regUserScheme = new mongoose.Schema({
-        userName: String,
-        email: String,
-        phoneNumber: String,
-        password: String,
-      });
       // create an object for inserting data to the db
       const user = {
         userName: username,
@@ -31,7 +26,6 @@ router.post("/", async (request, response) => {
         password: password,
       };
 
-      const User = mongoose.model("User", regUserScheme);
       User.create(user, (err, doc) => {
         if (err) {
           console.log(err);

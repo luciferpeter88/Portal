@@ -10,28 +10,20 @@ function Login() {
 
   async function postLogin(e) {
     e.preventDefault();
-    if (
-      !userLogin.email ||
-      !userLogin.password ||
-      !userLogin.email.includes("@")
-    ) {
-      dispatch({ type: "EMPTY_INPUT" });
-    } else {
-      try {
-        const post = await axios.post("http://localhost:4000/login", {
-          email: userLogin.email,
-          password: userLogin.password,
-        });
 
-        dispatch({
-          type: "USER_AUTHENTICATION",
-          isAuthenticated: post.data.isAuthenticated,
-        });
+    try {
+      const post = await axios.post("http://localhost:4000/login", {
+        email: userLogin.email,
+        password: userLogin.password,
+      });
 
-        // if the server response is true, the user is succesfully authenticated and she/he will be navigated to the protected route
-      } catch (error) {
-        console.log(error);
-      }
+      dispatch({
+        type: "USER_AUTHENTICATION",
+        isAuthenticated: post.data.isAuthenticated,
+      });
+      // if the server response is true, the user is succesfully authenticated and she/he will be navigated to the protected route
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -43,6 +35,7 @@ function Login() {
         </div>
         <form className="loginContainer">
           <h2>Welcome Back</h2>
+          <h3>{userLogin.response}</h3>
           <input
             value={userLogin.email}
             onChange={(e) =>
@@ -52,9 +45,7 @@ function Login() {
               })
             }
             type="email"
-            placeholder={
-              userLogin.emailValidation ? userLogin.emailValidation : "Email"
-            }
+            placeholder="Email"
           />
           <input
             value={userLogin.password}
@@ -65,11 +56,7 @@ function Login() {
               })
             }
             type="password"
-            placeholder={
-              userLogin.passwordValidation
-                ? userLogin.passwordValidation
-                : "Password"
-            }
+            placeholder="Password"
           />
           <button className="registerButton " type="submit" onClick={postLogin}>
             Sign In

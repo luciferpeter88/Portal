@@ -45,38 +45,16 @@ function reducer(state, action) {
       },
     };
   }
-  if (action.type === "EMPTY_INPUT") {
-    const key = Object.keys(state.userLogin)
-      .filter((key) => state.userLogin[key] === "")
-      .slice(0, -2);
-    const newArray = key.map((element) => element + "Validation");
-
-    // object to overwriting the empty fields
-    let regObjectOverwriting = {};
-    // values for the regObjectOverwriting object's properties
-    // looping through the new array and set the value inside of it as the regObjectOverwriting's object property and set it as a value to invalid input
-    for (let i = 0; i < newArray.length; i++) {
-      regObjectOverwriting[newArray[i]] = "Empty";
-    }
-    // finally return the state, and owerwriting the userRegistration with the regObjectOverwriting object!
-    return {
-      ...state,
-      userLogin: {
-        ...state.userLogin,
-        ...regObjectOverwriting,
-      },
-    };
-  }
   if (action.type === "USER_AUTHENTICATION") {
     // authenticating the user based on the server response
+    // if it is true, set the inputs to empty fields, but if its false, display the invalid message and keep the user inputs
     return {
       ...state,
       userLogin: {
         ...state.userLogin,
-        email: "",
-        password: "",
-        emailValidation: "",
-        passwordValidation: "",
+        email: action.isAuthenticated ? "" : state.userLogin.email,
+        password: action.isAuthenticated ? "" : state.userLogin.password,
+        response: action.isAuthenticated ? "" : "Invalid email or password",
         isAuthenticated: action.isAuthenticated,
       },
     };
@@ -151,18 +129,31 @@ function reducer(state, action) {
   }
 
   if (action.type === "USER_REGITRATION") {
+    const {
+      userRegistration: {
+        userName,
+        email,
+        phoneNumber,
+        password,
+        confirmPassword,
+      },
+    } = state;
     return {
       ...state,
       userLogin: {
         ...state.userLogin,
       },
+      // if the response from the server is true, that means the email is already taken,so keep the user inputs, but if the email email is not taken,
+      // then send the data to the server and delete the user inputs from the form
       userRegistration: {
-        userName: "",
-        email: "",
-        phoneNumber: "",
-        password: "",
-        confirmPassword: "",
-        isEmailReserved: action.isEmailReserved,
+        userName: action.isEmailReserved ? userName : "",
+        email: action.isEmailReserved ? email : "",
+        phoneNumber: action.isEmailReserved ? phoneNumber : "",
+        password: action.isEmailReserved ? password : "",
+        confirmPassword: action.isEmailReserved ? confirmPassword : "",
+        isEmailReserved: action.isEmailReserved
+          ? "The email is already taken"
+          : "Succesful registration!",
       },
     };
   }

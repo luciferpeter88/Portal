@@ -4,11 +4,12 @@ import { context } from "../components/Context";
 import axios from "axios";
 
 function Register() {
+  // getting data from the initial state from the reducer
   const {
     state: { userRegistration },
     dispatch,
   } = React.useContext(context);
-  // console.log(userRegistration);
+  // a function for getting data from the user, and pass it to the reducer function to handle it
   function gettinInputs(e) {
     dispatch({
       type: "USER_INPUT_REG",
@@ -18,7 +19,7 @@ function Register() {
       },
     });
   }
-
+  // a function to submit the form and checking for various condition and pass it to the reducer based on those conditions
   async function submitFrom(e) {
     e.preventDefault();
     // destructuring properties from the userRegistration object
@@ -45,12 +46,14 @@ function Register() {
             confirmPassword: confirmPassword,
           });
           console.log(post.data);
+          // the post.data.isEmailreserved is the response from the server
+          // if the response is false that means the user succesfully registered themself to the website
+          // because the email is not taken, but if its true,that means the email address exists in the db,so the registartion process was not succesfull
           dispatch({
             type: "USER_REGITRATION",
             isEmailReserved: post.data.isEmailReserved,
           });
-
-          // if the server response is true, the user is succesfully registered to the website
+          console.log(post.data);
         } catch (error) {
           console.log(error);
         }
@@ -64,6 +67,7 @@ function Register() {
           <img src={register} alt="register_pic" />
         </div>
         <form className="registerMain">
+          <h3>{userRegistration.isEmailReserved}</h3>
           <input
             value={userRegistration.userName}
             onChange={gettinInputs}
