@@ -5,6 +5,8 @@ require("../config/db");
 // import the user schema
 const User = require("../mongoose/regSchema");
 const { connection } = require("mongoose");
+// import bcrypt to hash the password
+const bcrypt = require("bcrypt");
 
 router.post("/", async (request, response) => {
   try {
@@ -23,7 +25,7 @@ router.post("/", async (request, response) => {
         userName: username,
         email: email,
         phoneNumber: phonenumber,
-        password: password,
+        password: await bcrypt.hash(password, 10),
       };
 
       User.create(user, (err, doc) => {

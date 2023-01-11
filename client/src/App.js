@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Department from "./pages/Department";
 import Register from "./pages/Register";
 import Story from "./pages/Story";
+import ProtectedPage from "./pages/ProtectedPage";
+import Profile from "./pages/Profile";
 function App() {
   return (
     <React.Fragment>
@@ -17,6 +19,14 @@ function App() {
             <Route path="department" element={<Department />} />
             <Route path="department/:storyName" element={<Story />} />
             <Route path="register" element={<Register />} />
+            <Route
+              path="profile"
+              element={
+                <ProtectedPage>
+                  <Profile />
+                </ProtectedPage>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
