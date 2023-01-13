@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (request, response) => {});
+router.get("/", async (request, response) => {});
 
 module.exports = router;
