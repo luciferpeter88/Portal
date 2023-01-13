@@ -26,17 +26,10 @@ router.post("/", async (request, response) => {
 
     if (verify === true) {
       const { userName, email, phoneNumber } = data[indexOfuser];
-      // console.log(data[indexOfuser]);
-      let userData = { name: userName, email, phoneNumber };
-      response.send({
-        isAuthenticated: true,
-      });
-      // request.userData = userData;
+      response.send({ isAuthenticated: true });
     } else if (verify === false) {
-      console.log("Invalid email or password");
       response.send({ isAuthenticated: false });
     } else {
-      console.log("invalid email");
       response.send({ isAuthenticated: false });
     }
   } catch (error) {
