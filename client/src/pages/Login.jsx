@@ -3,6 +3,7 @@ import login from "../assets/loginB.png";
 import axios from "axios";
 import { context } from "../components/Context";
 import { useNavigate } from "react-router-dom";
+
 function Login() {
   const navigate = useNavigate();
   const {
@@ -14,16 +15,27 @@ function Login() {
     e.preventDefault();
     // make a request to the server with the email and password
     try {
-      const post = await axios.post("http://localhost:4000/login", {
-        email: userLogin.email,
-        password: userLogin.password,
-      });
+      const post = await axios.post(
+        "http://localhost:4000/login",
+        {
+          email: userLogin.email,
+          password: userLogin.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
       // post.data is an object where the response from the server is located
       dispatch({
         type: "USER_AUTHENTICATION",
         isAuthenticated: post.data.isAuthenticated,
       });
+
       console.log(post.data);
+
       // navigate to the profile page
       navigate("/profile");
       // if the server response is true, the user is succesfully authenticated and she/he will be navigated to the protected route

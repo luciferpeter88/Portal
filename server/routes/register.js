@@ -26,6 +26,18 @@ router.post("/", async (request, response) => {
         email: email,
         phoneNumber: phonenumber,
         password: await bcrypt.hash(password, 10),
+        personalInfo: {
+          age: "",
+          location: "",
+        },
+        parentsInfo: {
+          fatherName: "",
+          fatherPhoneNum: "",
+          motherName: "",
+          motherPhoneNum: "",
+        },
+        medicalHistory: "",
+        allergies: "",
       };
 
       User.create(user, (err, doc) => {

@@ -1,13 +1,16 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { context } from "../components/Context";
+import getCookie from "../components/functions/getCookie";
 
 function ProtectedPage({ children }) {
   const { state } = React.useContext(context);
 
   // Check if the user is authenticated
-  if (state.userLogin.isAuthenticated) {
+  if (getCookie()) {
     // If the user is authenticated, render the component
+    return children;
+  } else if (state.userLogin.isAuthenticated) {
     return children;
   } else {
     // If the user is not authenticated, redirect to the login page

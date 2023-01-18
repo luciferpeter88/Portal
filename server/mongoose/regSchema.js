@@ -6,6 +6,18 @@ const regUserScheme = new mongoose.Schema({
   email: String,
   phoneNumber: String,
   password: String,
+  personalInfo: {
+    age: String,
+    location: String,
+  },
+  parentsInfo: {
+    fatherName: String,
+    fatherPhoneNum: String,
+    motherName: String,
+    motherPhoneNum: String,
+  },
+  medicalHistory: String,
+  allergies: String,
 });
 
 const User = mongoose.model("User", regUserScheme);

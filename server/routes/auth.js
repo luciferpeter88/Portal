@@ -3,6 +3,7 @@ const router = express.Router();
 require("../config/db");
 const { connection } = require("mongoose");
 const bcrypt = require("bcrypt");
+// token for keeping the user logged in
 
 router.post("/", async (request, response) => {
   try {
@@ -25,8 +26,11 @@ router.post("/", async (request, response) => {
         : "Can not get it";
 
     if (verify === true) {
-      const { userName, email, phoneNumber } = data[indexOfuser];
-      response.send({ isAuthenticated: true });
+      // getting the data from the server and pass it to the next route by using session
+      const { password, ...rest } = user;
+      request.session.user = rest;
+      // send back response from the server
+      response.cookie("isAuthenticated", true).send({ isAuthenticated: true });
     } else if (verify === false) {
       response.send({ isAuthenticated: false });
     } else {
