@@ -16,7 +16,7 @@ function Profile() {
             <p>10 years</p>
             <p>Glasgow,UK</p>
           </div>
-          <BsPenFill />
+          <BsPenFill className="pen" />
         </div>
         <div className="profileDetailsContainer">
           <Parents />
