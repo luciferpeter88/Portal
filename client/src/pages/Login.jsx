@@ -34,7 +34,7 @@ function Login() {
         isAuthenticated: post.data.isAuthenticated,
       });
 
-      console.log(post.data);
+      // console.log(post.data);
 
       // navigate to the profile page
       navigate("/profile");

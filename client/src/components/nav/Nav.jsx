@@ -3,6 +3,8 @@ import { Outlet, NavLink } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { hidden, visible, activeStyle, inactiveStyle } from "./navStyle";
 import { context } from "../Context";
+import getCookie from "../functions/getCookie";
+import deleteCookie from "../functions/deleteCookie";
 
 function Links({ route, path }) {
   const { dispatch } = React.useContext(context);
@@ -21,7 +23,7 @@ function Links({ route, path }) {
 
 function Nav() {
   const { state, dispatch } = React.useContext(context);
-
+  const validate = state.userLogin.isAuthenticated || getCookie();
   return (
     <React.Fragment>
       <RxHamburgerMenu
@@ -29,16 +31,42 @@ function Nav() {
         className="hamburgerMenu"
       />
       <nav className="nav" style={state.display ? visible : hidden}>
-        <Links route="/" path="Home" />
-        <Links route="department" path="Department" />
-        <Links route="login" path="Login" />
-        <Links route="register" path="Register" />
+        {validate ? null : <Links route="/" path="Home" />}
+        {validate ? null : <Links route="department" path="Department" />}
+        {validate ? null : <Links route="login" path="Login" />}
+        {validate ? null : <Links route="register" path="Register" />}
+        {validate ? <Links route="profile" path="Profile" /> : null}
+        {validate ? <Links route="map" path="Map" /> : null}
+        {validate ? <Links route="games" path="Games" /> : null}
+        {validate ? (
+          <NavLink
+            onClick={deleteCookie}
+            style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+            end
+            to="/"
+          >
+            Logout
+          </NavLink>
+        ) : null}
       </nav>
       <nav className="navLargescreen">
-        <Links route="/" path="Home" />
-        <Links route="department" path="Department" />
-        <Links route="login" path="Login" />
-        <Links route="register" path="Register" />
+        {validate ? null : <Links route="/" path="Home" />}
+        {validate ? null : <Links route="department" path="Department" />}
+        {validate ? null : <Links route="login" path="Login" />}
+        {validate ? null : <Links route="register" path="Register" />}
+        {validate ? <Links route="profile" path="Profile" /> : null}
+        {validate ? <Links route="map" path="Map" /> : null}
+        {validate ? <Links route="games" path="Games" /> : null}
+        {validate ? (
+          <NavLink
+            onClick={deleteCookie}
+            style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+            end
+            to="/"
+          >
+            Logout
+          </NavLink>
+        ) : null}
       </nav>
       <Outlet />
     </React.Fragment>

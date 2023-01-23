@@ -7,10 +7,8 @@ function ProtectedPage({ children }) {
   const { state } = React.useContext(context);
 
   // Check if the user is authenticated
-  if (getCookie()) {
+  if (getCookie() || state.userLogin.isAuthenticated) {
     // If the user is authenticated, render the component
-    return children;
-  } else if (state.userLogin.isAuthenticated) {
     return children;
   } else {
     // If the user is not authenticated, redirect to the login page

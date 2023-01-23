@@ -23,6 +23,25 @@ const initialState = {
     confirmPasswordValidation: "",
     isEmailReserved: null,
   },
+  profile: {
+    userName: "",
+    email: "",
+    phoneNumber: "",
+    avatar: "",
+    personalInfo: {
+      age: "",
+      location: "",
+    },
+    parentsInfo: {
+      fatherName: "",
+      fatherPhoneNum: "",
+      motherName: "",
+      motherPhoneNum: "",
+    },
+    medicalHistory: "",
+    allergies: "",
+  },
+  modalIsopen: false,
 };
 
 export default initialState;

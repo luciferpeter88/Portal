@@ -157,6 +157,29 @@ function reducer(state, action) {
       },
     };
   }
+  if (action.type === "USER_PROFILE") {
+    // console.log(action.data);
+    return {
+      ...state,
+      profile: {
+        ...action.data,
+      },
+    };
+  }
+  // function for hiding or appearing the modal component
+  if (action.type === "MODAL") {
+    return {
+      ...state,
+      modalIsopen: true,
+    };
+  }
+  // function for updating the user's details (name,age,location and phone)
+  if (action.type === "UPDATE_DATA_USER_FIRST") {
+    return {
+      ...state,
+      modalIsopen: false,
+    };
+  }
   return state;
 }
 

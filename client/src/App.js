@@ -8,6 +8,8 @@ import Register from "./pages/Register";
 import Story from "./pages/Story";
 import ProtectedPage from "./pages/ProtectedPage";
 import Profile from "./pages/Profile";
+import Games from "./pages/Games";
+import Map from "./pages/Map";
 function App() {
   return (
     <React.Fragment>
@@ -24,6 +26,22 @@ function App() {
               element={
                 <ProtectedPage>
                   <Profile />
+                </ProtectedPage>
+              }
+            />
+            <Route
+              path="games"
+              element={
+                <ProtectedPage>
+                  <Games />
+                </ProtectedPage>
+              }
+            />
+            <Route
+              path="map"
+              element={
+                <ProtectedPage>
+                  <Map />
                 </ProtectedPage>
               }
             />
