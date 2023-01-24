@@ -2,6 +2,7 @@ import React from "react";
 import { context } from "../Context";
 import Overlay from "./Overlay";
 import axios from "axios";
+import FormData from "form-data";
 
 function Modal() {
   const { state, dispatch } = React.useContext(context);
@@ -18,12 +19,20 @@ function Modal() {
   async function handleSubmit(e) {
     dispatch({ type: "UPDATE_DATA_USER_FIRST" });
     e.preventDefault();
+    let formData = new FormData();
+    formData.append("file", user.avatar);
 
     try {
-      const response = await axios.put("http://localhost:4000/profile", user, {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
+      const response = await axios.put(
+        "http://localhost:4000/profile",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
       console.log(response);
     } catch (error) {
       console.error(error);
