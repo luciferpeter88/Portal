@@ -6,7 +6,6 @@ import FormData from "form-data";
 
 function Modal() {
   const { state, dispatch } = React.useContext(context);
-  const { profile } = state;
   const [user, setUser] = React.useState({
     name: "",
     age: "",
@@ -14,13 +13,17 @@ function Modal() {
     phone: "",
     avatar: "",
   });
-  console.log(user);
 
   async function handleSubmit(e) {
     dispatch({ type: "UPDATE_DATA_USER_FIRST" });
     e.preventDefault();
     let formData = new FormData();
+    // sending data to the server
     formData.append("file", user.avatar);
+    formData.append("name", user.name);
+    formData.append("age", user.age);
+    formData.append("location", user.location);
+    formData.append("phone", user.phone);
 
     try {
       const response = await axios.put(

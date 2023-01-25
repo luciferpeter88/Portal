@@ -42,6 +42,7 @@ const initialState = {
     allergies: "",
   },
   modalIsopen: false,
+  fetch: false,
 };
 
 export default initialState;

@@ -25,7 +25,7 @@ function useFetchingData() {
       }
     }
     fetch();
-  }, []);
+  }, [state.fetch]);
 
   //   console.log(userData);
   return null;

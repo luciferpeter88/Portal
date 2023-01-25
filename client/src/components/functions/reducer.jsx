@@ -174,10 +174,12 @@ function reducer(state, action) {
     };
   }
   // function for updating the user's details (name,age,location and phone)
+  // re-fetch the data when the user make a request to the server(put request!)
   if (action.type === "UPDATE_DATA_USER_FIRST") {
     return {
       ...state,
       modalIsopen: false,
+      fetch: !state.fetch,
     };
   }
   return state;

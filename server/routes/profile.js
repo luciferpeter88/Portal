@@ -1,43 +1,9 @@
-const fs = require("fs");
-const path = require("path");
 const express = require("express");
 const router = express.Router();
 const addSessionData = require("../custom/addSessionData");
-// multer for uploading images to the server
-const multer = require("multer");
-// join the current path with the uploads
-const uploads = path.join(__dirname, "..", "pictures");
-
-// if the upload folder does not exist,create one
-if (!fs.existsSync(uploads)) {
-  fs.mkdirSync(uploads);
-}
-
-const storage = multer.diskStorage({
-  destination: (request, file, cb) => {
-    // create a dynamic folder based on session data
-    let dynamicFolder;
-    let folderPath;
-    // if the session is existing, create a dynamic folder with the name of the user's email
-    if (request.sessionData) {
-      dynamicFolder = request.sessionData;
-      console.log(dynamicFolder);
-      folderPath = path.join(uploads, dynamicFolder);
-      // if it does not exist,create one
-      if (!fs.existsSync(folderPath)) {
-        fs.mkdirSync(folderPath);
-      }
-    }
-
-    cb(null, folderPath);
-  },
-  filename: (request, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-
-const upload = multer({ storage });
-
+const User = require("../mongoose/regSchema");
+// import the multer middleware
+const upload = require("../custom/multer");
 router.get("/", (request, response) => {
   // if the session has been set send the details to the client
   if (request.session.user) {
@@ -46,16 +12,59 @@ router.get("/", (request, response) => {
     response.send(rest);
   } else {
     response.send("no data!");
-    console.log("no data!");
   }
 });
 
+// run the addSession fuction first and then the multer middleware in order to access the request.sessionData in the multer middleware,
+//so I can create dynamic folder for every registered user in the multer middleware
 router.put("/", addSessionData, upload.single("file"), (request, response) => {
-  // console.log(request.sessionData);
-  // console.log(request.body);
-  // console.log(request.file);
-
-  response.send("ok");
+  // user inputs from the client side
+  const email = request.sessionData;
+  const { name, age, location, phone } = request.body;
+  let avatar = request.file.buffer;
+  // if we have got a picture, then convert it to binary code and upload it to the mongodb
+  if (avatar && avatar.length) {
+    avatar = new Buffer.from(avatar, "binary");
+  }
+  // update the user data in the database
+  User.findOneAndUpdate(
+    { email: email },
+    {
+      $set: {
+        userName: name,
+        phoneNumber: phone,
+        avatar: avatar || "",
+        personalInfo: {
+          age: age,
+          location: location,
+        },
+      },
+    },
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        // handle error
+      } else {
+        console.log(request.session.user);
+        console.log("between");
+        // set the session data with the updated value
+        request.session.user = {
+          ...request.session.user,
+          userName: name,
+          phoneNumber: phone,
+          avatar: avatar || "",
+          personalInfo: {
+            age: age,
+            location: location,
+          },
+        };
+        console.log(request.session.user);
+        // send back the updated value to the client
+        const { _id, __v, ...rest } = request.session.user;
+        response.send(rest);
+      }
+    }
+  );
 });
 
 module.exports = router;

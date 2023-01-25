@@ -6,6 +6,9 @@ const regUserScheme = new mongoose.Schema({
   email: String,
   phoneNumber: String,
   password: String,
+  avatar: {
+    type: Buffer,
+  },
   personalInfo: {
     age: String,
     location: String,

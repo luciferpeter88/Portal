@@ -7,7 +7,6 @@ const cors = require("cors");
 const login = require("./routes/auth");
 const registration = require("./routes/register");
 const profile = require("./routes/profile");
-
 // applying these middlewares for the entire application
 app.use([bodyParser.urlencoded({ extended: false }), bodyParser.json()]);
 app.use(cookieParser());

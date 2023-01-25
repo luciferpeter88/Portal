@@ -26,6 +26,7 @@ router.post("/", async (request, response) => {
         email: email,
         phoneNumber: phonenumber,
         password: await bcrypt.hash(password, 10),
+        avatar: "",
         personalInfo: {
           age: "",
           location: "",
