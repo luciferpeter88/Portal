@@ -25,6 +25,7 @@ function useFetchingData() {
       }
     }
     fetch();
+    // every time when the user clicks on the save changes button, the useEffect hook is going to re-run again and the user can see the updated value from the server immediately!
   }, [state.fetch]);
 
   //   console.log(userData);
