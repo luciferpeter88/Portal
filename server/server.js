@@ -31,6 +31,7 @@ app.use(
     },
   })
 );
+app.use(express.static("pictures"));
 
 // route for handeling login route
 app.use("/login", login);

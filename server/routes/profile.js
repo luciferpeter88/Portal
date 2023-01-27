@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const addSessionData = require("../custom/addSessionData");
 const User = require("../mongoose/regSchema");
+
 // import the multer middleware
 const upload = require("../custom/multer");
 router.get("/", (request, response) => {
@@ -21,11 +22,15 @@ router.put("/", addSessionData, upload.single("file"), (request, response) => {
   // user inputs from the client side
   const email = request.sessionData;
   const { name, age, location, phone } = request.body;
-  let avatar = request.file.buffer;
-  // if we have got a picture, then convert it to binary code and upload it to the mongodb
-  if (avatar && avatar.length) {
-    avatar = new Buffer.from(avatar, "binary");
+  let avatar = request.file;
+  let picturesource;
+  // if we have not got a picture, then set the avatar to an empty string
+  if (!avatar.filename) {
+    avatar = "";
   }
+  // if we got the picture,then define where it is located
+  picturesource = `http://localhost:4000/${email}/${avatar.filename}`;
+
   // update the user data in the database
   User.findOneAndUpdate(
     { email: email },
@@ -33,7 +38,7 @@ router.put("/", addSessionData, upload.single("file"), (request, response) => {
       $set: {
         userName: name,
         phoneNumber: phone,
-        avatar: avatar || "",
+        avatar: picturesource || avatar,
         personalInfo: {
           age: age,
           location: location,
@@ -45,20 +50,17 @@ router.put("/", addSessionData, upload.single("file"), (request, response) => {
       if (err) {
         // handle error
       } else {
-        console.log(request.session.user);
-        console.log("between");
         // set the session data with the updated value
         request.session.user = {
           ...request.session.user,
           userName: name,
           phoneNumber: phone,
-          avatar: avatar || "",
+          avatar: picturesource || avatar,
           personalInfo: {
             age: age,
             location: location,
           },
         };
-        console.log(request.session.user);
         // send back the updated value to the client
         const { _id, __v, ...rest } = request.session.user;
         response.send(rest);

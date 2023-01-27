@@ -20,7 +20,7 @@ function Profile() {
       <Modal />
       <div className="profileContainer">
         <div className="profilePicContainer">
-          <img src={boy} alt="Brian" />
+          <img src={profile.avatar} alt="Brian" />
           <div>
             <p>
               Name: <span>{profile.userName}</span>

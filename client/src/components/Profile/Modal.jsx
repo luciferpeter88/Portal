@@ -24,7 +24,13 @@ function Modal() {
     formData.append("age", user.age);
     formData.append("location", user.location);
     formData.append("phone", user.phone);
-
+    setUser({
+      name: "",
+      age: "",
+      location: "",
+      phone: "",
+      avatar: "",
+    });
     try {
       const response = await axios.put(
         "http://localhost:4000/profile",
