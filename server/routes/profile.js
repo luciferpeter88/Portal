@@ -19,8 +19,9 @@ router.get("/", (request, response) => {
 // run the addSession fuction first and then the multer middleware in order to access the request.sessionData in the multer middleware,
 //so I can create dynamic folder for every registered user in the multer middleware
 router.put("/", addSessionData, upload.single("file"), (request, response) => {
-  // user inputs from the client side
+  // session data from the custom addsessionData middleware
   const email = request.sessionData;
+  // user inputs from the client side
   const { name, age, location, phone } = request.body;
   let avatar = request.file;
   let picturesource;
