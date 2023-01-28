@@ -10,6 +10,8 @@ import ProtectedPage from "./pages/ProtectedPage";
 import Profile from "./pages/Profile";
 import Games from "./pages/Games";
 import Map from "./pages/Map";
+import ProtectedDash from "./pages/ProtectedDash";
+import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <React.Fragment>
@@ -43,6 +45,14 @@ function App() {
                 <ProtectedPage>
                   <Map />
                 </ProtectedPage>
+              }
+            />
+            <Route
+              path="dashboard"
+              element={
+                <ProtectedDash>
+                  <Dashboard />
+                </ProtectedDash>
               }
             />
           </Route>

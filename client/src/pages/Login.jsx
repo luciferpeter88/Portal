@@ -36,8 +36,13 @@ function Login() {
 
       // console.log(post.data);
 
-      // navigate to the profile page
-      navigate("/profile");
+      // if the response from the server is admin, navigate to the protectedDashboard
+      if (post.data.isAuthenticated === "admin") {
+        navigate("/dashboard");
+      } else {
+        // if the response true or false navigate to the protected pages!
+        navigate("/profile");
+      }
       // if the server response is true, the user is succesfully authenticated and she/he will be navigated to the protected route
     } catch (error) {
       console.log(error);
