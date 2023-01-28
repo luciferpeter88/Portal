@@ -2,36 +2,32 @@ import React from "react";
 import { context } from "../Context";
 import Overlay from "./Overlay";
 import axios from "axios";
-import FormData from "form-data";
 
-function Modal() {
+function ModalParents() {
   const { state, dispatch } = React.useContext(context);
   const [user, setUser] = React.useState({
-    name: "",
-    age: "",
-    location: "",
-    phone: "",
-    avatar: "",
+    fatherName: "",
+    fatherPhone: "",
+    motherName: "",
+    motherPhone: "",
   });
-
   async function handleSubmit(e) {
     dispatch({ type: "UPDATE_DATA_USER_FIRST" });
     e.preventDefault();
     let formData = new FormData();
     // sending data to the server
-    formData.append("file", user.avatar);
-    formData.append("name", user.name);
-    formData.append("age", user.age);
-    formData.append("location", user.location);
-    formData.append("phone", user.phone);
+    formData.append("fatherName", user.fatherName);
+    formData.append("fatherPhone", user.fatherPhone);
+    formData.append("motherName", user.motherName);
+    formData.append("motherPhone", user.motherPhone);
 
     try {
-      const response = await axios.put(
+      const response = await axios.patch(
         "http://localhost:4000/profile",
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
           withCredentials: true,
         }
@@ -48,51 +44,44 @@ function Modal() {
       [e.target.name]: e.target.value,
     });
   }
-  // function for updating picture
-  function onUpload(e) {
-    setUser({ ...user, avatar: e.target.files[0] });
-  }
 
   return (
     <React.Fragment>
-      {state.modalIsopen ? (
+      {state.modalIsopenP ? (
         <Overlay>
           <form className="profile-form">
             <br />
-            <label>Name:</label>
+            <label>Father's name</label>
             <input
               type="text"
-              name="name"
-              value={user.name}
+              name="fatherName"
+              value={user.fatherName}
               onChange={onChange}
             />
             <br />
-            <label>Age:</label>
+            <label>Father's phone-number:</label>
             <input
               type="text"
-              name="age"
-              value={user.age}
+              name="fatherPhone"
+              value={user.fatherPhone}
               onChange={onChange}
             />
             <br />
-            <label>Location:</label>
+            <label>Mother's name:</label>
             <input
               type="text"
-              name="location"
-              value={user.location}
+              name="motherName"
+              value={user.motherName}
               onChange={onChange}
             />
             <br />
-            <label>Phone Number:</label>
+            <label>Mother's phone-number:</label>
             <input
               type="text"
-              name="phone"
-              value={user.phoneNumber}
+              name="motherPhone"
+              value={user.motherPhone}
               onChange={onChange}
             />
-            <br />
-            <label>Profile Picture:</label>
-            <input type="file" onChange={onUpload} />
             <br />
             <button className="submit-btn" type="submit" onClick={handleSubmit}>
               Save Changes
@@ -111,4 +100,4 @@ function Modal() {
   );
 }
 
-export default Modal;
+export default ModalParents;

@@ -43,6 +43,7 @@ const initialState = {
   },
   modalIsopen: false,
   fetch: false,
+  modalIsopenP: false,
 };
 
 export default initialState;

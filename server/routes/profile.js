@@ -23,14 +23,12 @@ router.put("/", addSessionData, upload.single("file"), (request, response) => {
   const email = request.sessionData;
   // user inputs from the client side
   const { name, age, location, phone } = request.body;
-  let avatar = request.file;
-  let picturesource;
-  // if we have not got a picture, then set the avatar to an empty string
-  if (!avatar.filename) {
-    avatar = "";
+
+  let picturesource = "";
+  // if the request.file is not undifined,then upload the picture for the given path below!
+  if (request.file !== undefined) {
+    picturesource = `http://localhost:4000/${email}/${request.file.filename}`;
   }
-  // if we got the picture,then define where it is located
-  picturesource = `http://localhost:4000/${email}/${avatar.filename}`;
 
   // update the user data in the database
   User.findOneAndUpdate(
@@ -39,7 +37,7 @@ router.put("/", addSessionData, upload.single("file"), (request, response) => {
       $set: {
         userName: name,
         phoneNumber: phone,
-        avatar: picturesource || avatar,
+        avatar: picturesource,
         personalInfo: {
           age: age,
           location: location,
@@ -56,10 +54,55 @@ router.put("/", addSessionData, upload.single("file"), (request, response) => {
           ...request.session.user,
           userName: name,
           phoneNumber: phone,
-          avatar: picturesource || avatar,
+          avatar: picturesource,
           personalInfo: {
             age: age,
             location: location,
+          },
+        };
+        // send back the updated value to the client
+        const { _id, __v, ...rest } = request.session.user;
+        response.send(rest);
+      }
+    }
+  );
+});
+
+router.patch("/", (request, response) => {
+  const { fatherName, fatherPhone, motherName, motherPhone } = request.body;
+  let email;
+  if (request.session.user) {
+    // update the global email variable in the patch route
+    email = request.session.user.email;
+    console.log(request.session.user);
+  }
+
+  // update the user data in the database
+  User.findOneAndUpdate(
+    { email: email },
+    {
+      $set: {
+        parentsInfo: {
+          fatherName: fatherName,
+          fatherPhoneNum: fatherPhone,
+          motherName: motherName,
+          motherPhoneNum: motherPhone,
+        },
+      },
+    },
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        // handle error
+      } else {
+        // set the session data with the updated value
+        request.session.user = {
+          ...request.session.user,
+          parentsInfo: {
+            fatherName: fatherName,
+            fatherPhoneNum: fatherPhone,
+            motherName: motherName,
+            motherPhoneNum: motherPhone,
           },
         };
         // send back the updated value to the client

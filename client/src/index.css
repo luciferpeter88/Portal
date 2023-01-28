@@ -607,3 +607,15 @@ input[type="file"] {
   }
 }
 /* end of Modal */
+
+/* map starts from here */
+.map {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--thirdaryColor);
+}
+
+/* end of map */

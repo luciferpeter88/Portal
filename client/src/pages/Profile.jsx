@@ -1,5 +1,4 @@
 import React from "react";
-import boy from "../assets/boy.png";
 import { BsPenFill } from "react-icons/bs";
 import Parents from "../components/Profile/Parents";
 import MedicalD from "../components/Profile/MedicalD";
@@ -7,6 +6,7 @@ import Allergies from "../components/Profile/Allergies";
 import { context } from "../components/Context";
 import fetchingData from "../components/Profile/FetchingData";
 import Modal from "../components/Profile/Modal";
+import Appointment from "../components/Profile/Appointment";
 function Profile() {
   const {
     state: { profile },
@@ -20,7 +20,7 @@ function Profile() {
       <Modal />
       <div className="profileContainer">
         <div className="profilePicContainer">
-          <img src={profile.avatar} alt="Brian" />
+          <img src={profile.avatar} alt="" />
           <div>
             <p>
               Name: <span>{profile.userName}</span>
@@ -39,6 +39,7 @@ function Profile() {
           <Parents />
           <MedicalD />
           <Allergies />
+          <Appointment />
         </div>
       </div>
     </React.Fragment>
