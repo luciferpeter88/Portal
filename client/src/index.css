@@ -619,3 +619,11 @@ input[type="file"] {
 }
 
 /* end of map */
+
+/* dashboard starts here */
+
+.dashboardContainer {
+  height: 100vh;
+}
+
+/* end of dashboard */

@@ -11,6 +11,7 @@ function useFetchingData() {
   // run the useeffect hook when the component is loaded
   React.useEffect(() => {
     async function fetch() {
+      // onlly fetch the data from the server if the user is authenticated
       if (validate) {
         // fetching data from the server
         try {

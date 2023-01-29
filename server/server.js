@@ -7,6 +7,8 @@ const cors = require("cors");
 const login = require("./routes/auth");
 const registration = require("./routes/register");
 const profile = require("./routes/profile");
+const dashboard = require("./routes/dashboard");
+
 // applying these middlewares for the entire application
 app.use([bodyParser.urlencoded({ extended: false }), bodyParser.json()]);
 app.use(cookieParser());
@@ -39,6 +41,8 @@ app.use("/login", login);
 app.use("/registration", registration);
 // route for handeling the profile route
 app.use("/profile", profile);
+// route for handeling the dashboard route
+app.use("/dashboard", dashboard);
 app.listen(4000, () => {
   console.log("server is running");
 });
