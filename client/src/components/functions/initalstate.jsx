@@ -44,6 +44,7 @@ const initialState = {
   modalIsopen: false,
   fetch: false,
   modalIsopenP: false,
+  dashModal: false,
 };
 
 export default initialState;

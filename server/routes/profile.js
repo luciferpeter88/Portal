@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const addSessionData = require("../custom/addSessionData");
 const User = require("../mongoose/regSchema");
-
 // import the multer middleware
 const upload = require("../custom/multer");
 router.get("/", (request, response) => {

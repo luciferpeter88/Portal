@@ -189,6 +189,13 @@ function reducer(state, action) {
       fetch: !state.fetch,
     };
   }
+  if (action.type === "DASH_MODAL") {
+    return {
+      ...state,
+      dashModal: !state.dashModal,
+    };
+  }
+
   return state;
 }
 

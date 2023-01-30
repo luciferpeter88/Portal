@@ -15,4 +15,23 @@ router.get("/", async (request, response) => {
   response.send(filter);
 });
 
+router.put("/", (request, response) => {
+  // get the data from the client
+  const {
+    name,
+    phoneNum,
+    age,
+    location,
+    fatherName,
+    fatherPhone,
+    motherName,
+    motherPhone,
+    medical,
+    allergies,
+    appointment,
+    email,
+  } = request.body;
+  console.log(name);
+});
+
 module.exports = router;

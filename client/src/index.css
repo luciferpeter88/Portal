@@ -623,7 +623,48 @@ input[type="file"] {
 /* dashboard starts here */
 
 .dashboardContainer {
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--thirdaryColor);
 }
 
+.dashboardContainer > div > h2 {
+  margin-bottom: 1rem;
+}
+.dashboardContainer > div > select {
+  margin-bottom: 1rem;
+}
+.picture {
+  height: 7rem;
+  width: 7rem;
+  margin-bottom: 2rem;
+  border-radius: 50%;
+}
+.dashboardCon > dashSub {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 1150px) {
+  .dashboardContainer {
+    flex-direction: row;
+    gap: 5rem;
+  }
+  .dashboardContainer > .da {
+    margin-bottom: 8.5rem;
+  }
+  .dashboardCon {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .details {
+    display: flex;
+  }
+}
 /* end of dashboard */
