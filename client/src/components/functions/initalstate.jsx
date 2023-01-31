@@ -45,6 +45,7 @@ const initialState = {
   fetch: false,
   modalIsopenP: false,
   dashModal: false,
+  selected: [],
 };
 
 export default initialState;

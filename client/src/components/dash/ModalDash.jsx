@@ -4,34 +4,39 @@ import Overlay from "../Profile/Overlay";
 import axios from "axios";
 import Inputs from "./Inpits";
 
-function ModalDash({ selectedUser }) {
+function ModalDash() {
   // getting the properties from the selectedUser
-  const {
-    allergies,
-    email,
-    medicalHistory,
-    parentsInfo,
-    personalInfo,
-    phoneNumber,
-    userName,
-  } = selectedUser[0];
+
   const { state, dispatch } = React.useContext(context);
   // show the default value or an empty value
+  // use useeffect to update the value!!!s
+  console.log(state.selected[0]);
   const [user, setUser] = React.useState({
-    name: userName || "",
-    phoneNum: phoneNumber || "",
-    age: personalInfo.age || "",
-    location: personalInfo.location || "",
-    fatherName: parentsInfo.fatherName || "",
-    fatherPhone: parentsInfo.fatherPhoneNum || "",
-    motherName: parentsInfo.motherName || "",
-    motherPhone: parentsInfo.motherPhoneNum || "",
-    medical: medicalHistory || "",
-    allergies: allergies || "",
+    name: "",
+    phoneNum: "",
+    age: "",
+    location: "",
+    fatherName: "",
+    fatherPhone: "",
+    motherName: "",
+    motherPhone: "",
+    medical: "",
+    allergies: "",
     appointment: "",
-    email: email || "",
+    email: "",
   });
+  const { userName } = state.selected[0];
+  React.useEffect(() => {
+    setUser((prev) => {
+      return {
+        ...prev,
+        name: userName,
+      };
+    });
+  }, [userName]);
+
   async function handleSubmit(e) {
+    dispatch({ type: "DASH_MODAL" });
     e.preventDefault();
     let formData = new FormData();
     // sending data to the server

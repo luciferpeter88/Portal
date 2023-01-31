@@ -195,6 +195,13 @@ function reducer(state, action) {
       dashModal: !state.dashModal,
     };
   }
+  if (action.type === "DASHBOARD_DATA") {
+    // console.log(action.data);
+    return {
+      ...state,
+      selected: action.data,
+    };
+  }
 
   return state;
 }

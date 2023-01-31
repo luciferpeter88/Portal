@@ -5,13 +5,11 @@ import { BsPenFill } from "react-icons/bs";
 import ModalDash from "../components/dash/ModalDash";
 
 function Dashboard() {
-  const { dispatch } = React.useContext(context);
+  const { state, dispatch } = React.useContext(context);
   // state for storing data from the server
   const [data, setData] = React.useState("");
   // state for loaded data
   const [loading, setLoading] = React.useState(false);
-  //state for selecting user
-  const [selectedUser, setSelectedUser] = React.useState("");
 
   // make a request to dashboard.js route
   async function fetch() {
@@ -22,16 +20,16 @@ function Dashboard() {
       });
       // store the data in the usestate
       setData(get.data);
-      // display the first patient what we got from the database
-      setSelectedUser([get.data[0]]);
+      dispatch({ type: "DASHBOARD_DATA", data: [get.data[0]] });
+
       // set the loading satet to true if we got the data from the server
       setLoading(true);
     } catch (error) {
       console.log(error);
     }
   }
-  // console.log(data);
-
+  console.log(state.selected);
+  // let selectUser;
   function select(e) {
     // targetting the value, which is the email address.
     const selectedEmail = e.target.value;
@@ -39,14 +37,9 @@ function Dashboard() {
     if (loading) {
       // returning the selected user only
       const selectedUser = data.filter((user) => user.email === selectedEmail);
-      // set the selcted user
-      setSelectedUser(selectedUser);
-
-      console.log(selectedUser);
+      dispatch({ type: "DASHBOARD_DATA", data: selectedUser });
     }
   }
-
-  // console.log(data);
 
   React.useEffect(() => {
     fetch();
@@ -54,7 +47,7 @@ function Dashboard() {
 
   return (
     <React.Fragment>
-      <ModalDash selectedUser={selectedUser} />
+      {loading ? <ModalDash /> : null}
       <div className="dashboardContainer">
         <div className="da">
           <h2>Select Patient</h2>
@@ -70,7 +63,7 @@ function Dashboard() {
               : null}
           </select>
           {loading
-            ? selectedUser.map((user) => {
+            ? state.selected.map((user) => {
                 return (
                   <div>
                     <img
@@ -89,7 +82,7 @@ function Dashboard() {
           />
         </div>
         {loading
-          ? selectedUser.map((user) => {
+          ? state.selected.map((user) => {
               return (
                 <div>
                   <div className="dashboardCon">
