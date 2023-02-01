@@ -7,7 +7,7 @@ function Allergies() {
     <div className="medicalDetails">
       <div>
         <h3>Allergies</h3>
-        <p>{state.allergies}</p>
+        <p>{state.profile.allergies}</p>
       </div>
     </div>
   );
