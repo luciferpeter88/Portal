@@ -56,7 +56,7 @@ function Dashboard() {
 
   return (
     <React.Fragment>
-      {loading ? <ModalDash /> : null}
+      {loading ? <ModalDash setSelectedUser={setSelectedUser} /> : null}
       <div className="dashboardContainer">
         <div className="da">
           <h2>Select Patient</h2>
