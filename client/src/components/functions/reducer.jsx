@@ -195,6 +195,12 @@ function reducer(state, action) {
       dashModal: !state.dashModal,
     };
   }
+  if (action.type === "SECELTED_EMAIL") {
+    return {
+      ...state,
+      selectedEmail: action.email,
+    };
+  }
 
   return state;
 }

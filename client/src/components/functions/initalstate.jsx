@@ -45,6 +45,7 @@ const initialState = {
   fetch: false,
   modalIsopenP: false,
   dashModal: false,
+  selectedEmail: "",
 };
 
 export default initialState;
