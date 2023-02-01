@@ -20,6 +20,7 @@ function ModalDash({ setSelectedUser }) {
     medical: "",
     allergies: "",
     appointment: "",
+    department: "",
   });
   // console.log(state.selectedEmail);
   async function handleSubmit(e) {
@@ -38,6 +39,7 @@ function ModalDash({ setSelectedUser }) {
     formData.append("medical", user.medical);
     formData.append("allergies", user.allergies);
     formData.append("appointment", user.appointment);
+    formData.append("department", user.department);
     formData.append("email", state.selectedEmail);
 
     try {
@@ -69,6 +71,7 @@ function ModalDash({ setSelectedUser }) {
         medical: "",
         allergies: "",
         appointment: "",
+        department: "",
       });
     } catch (error) {
       console.error(error);
@@ -151,6 +154,12 @@ function ModalDash({ setSelectedUser }) {
               label="Appointment"
               name="appointment"
               value={user.appointment}
+              change={onChange}
+            />
+            <Inputs
+              label="Department"
+              name="department"
+              value={user.department}
               change={onChange}
             />
 
