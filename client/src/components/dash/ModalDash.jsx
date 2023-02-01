@@ -4,7 +4,7 @@ import Overlay from "../Profile/Overlay";
 import axios from "axios";
 import Inputs from "./Inpits";
 
-function ModalDash() {
+function ModalDash({ setSelectedUser }) {
   const { state, dispatch } = React.useContext(context);
 
   // show the default value or an empty value
@@ -52,6 +52,24 @@ function ModalDash() {
         }
       );
       console.log(response);
+      // updating the ui when the admin makes changes
+      const selected = response.data.filter(
+        (user) => user.email === state.selectedEmail
+      );
+      setSelectedUser(selected);
+      setUser({
+        name: "",
+        phoneNum: "",
+        age: "",
+        location: "",
+        fatherName: "",
+        fatherPhone: "",
+        motherName: "",
+        motherPhone: "",
+        medical: "",
+        allergies: "",
+        appointment: "",
+      });
     } catch (error) {
       console.error(error);
     }
