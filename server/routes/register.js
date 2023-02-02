@@ -39,6 +39,8 @@ router.post("/", async (request, response) => {
         },
         medicalHistory: "",
         allergies: "",
+        appointment: "",
+        department: "",
       };
 
       User.create(user, (err, doc) => {

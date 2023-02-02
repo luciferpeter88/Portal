@@ -74,7 +74,7 @@ function Dashboard() {
           {loading && selected
             ? selectedUser.map((user) => {
                 return (
-                  <div>
+                  <div key={user.email}>
                     <img
                       className="picture"
                       src={user.avatar}

@@ -19,6 +19,8 @@ const regUserScheme = new mongoose.Schema({
   },
   medicalHistory: String,
   allergies: String,
+  appointment: String,
+  department: String,
 });
 
 const User = mongoose.model("User", regUserScheme);

@@ -27,6 +27,7 @@ router.put("/", (request, response) => {
     allergies,
     appointment,
     email,
+    department,
   } = request.body;
   console.log(name);
   console.log(email);
@@ -50,6 +51,8 @@ router.put("/", (request, response) => {
         },
         medicalHistory: medical,
         allergies: allergies,
+        appointment: appointment,
+        department: department,
       },
     },
     { new: true },

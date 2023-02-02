@@ -40,6 +40,8 @@ const initialState = {
     },
     medicalHistory: "",
     allergies: "",
+    appointment: "",
+    department: "",
   },
   modalIsopen: false,
   fetch: false,

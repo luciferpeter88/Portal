@@ -51,10 +51,11 @@ function User({ user }) {
             <h3>Allergies</h3>
             <p>{user.allergies}</p>
           </div>
-          {/* <div>
-            <h3>Department</h3>
+          <div>
+            <h3>Appointment</h3>
+            <p>{user.appointment}</p>
             <p>{user.department}</p>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

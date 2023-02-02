@@ -20,7 +20,7 @@ function ModalDash({ setSelectedUser }) {
     medical: "",
     allergies: "",
     appointment: "",
-    department: "",
+    department: "blood-taking",
   });
   // console.log(state.selectedEmail);
   async function handleSubmit(e) {
@@ -156,12 +156,15 @@ function ModalDash({ setSelectedUser }) {
               value={user.appointment}
               change={onChange}
             />
-            <Inputs
-              label="Department"
-              name="department"
-              value={user.department}
-              change={onChange}
-            />
+
+            <label for="department">Choose a department:</label>
+
+            <select name="department" onChange={onChange}>
+              <option value="blood-taking">Blood-taking</option>
+              <option value="mri">Mri</option>
+              <option value="surgery">Surgery</option>
+              <option value="wards">Wards</option>
+            </select>
 
             <button className="submit-btn" type="submit" onClick={handleSubmit}>
               Save Changes
