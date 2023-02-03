@@ -53,7 +53,7 @@ function User({ user }) {
           </div>
           <div>
             <h3>Appointment</h3>
-            <p>{user.appointment}</p>
+            <p>{user.appointment?.split("G")[0]}</p>
             <p>{user.department}</p>
           </div>
         </div>

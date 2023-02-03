@@ -3,9 +3,12 @@ import { context } from "../Context";
 import Overlay from "../Profile/Overlay";
 import axios from "axios";
 import Inputs from "./Inpits";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function ModalDash({ setSelectedUser }) {
   const { state, dispatch } = React.useContext(context);
+  const [startDate, setStartDate] = React.useState(new Date());
 
   // show the default value or an empty value
   const [user, setUser] = React.useState({
@@ -19,9 +22,10 @@ function ModalDash({ setSelectedUser }) {
     motherPhone: "",
     medical: "",
     allergies: "",
-    appointment: "",
+    appointment: startDate,
     department: "blood-taking",
   });
+  console.log(user);
   // console.log(state.selectedEmail);
   async function handleSubmit(e) {
     dispatch({ type: "DASH_MODAL" });
@@ -88,7 +92,22 @@ function ModalDash({ setSelectedUser }) {
     e.preventDefault();
     dispatch({ type: "DASH_MODAL" });
   }
-  // function for updating picture
+
+  function dateSubmit(data) {
+    // function to overwriting the initial date
+    setStartDate(data);
+    // update the user hooks to keep the previous data and update the appointment property with the new value
+    setUser((prevData) => {
+      return {
+        ...prevData,
+        appointment: data,
+      };
+    });
+  }
+
+  function deletPerson(e) {
+    e.preventDefault();
+  }
 
   return (
     <React.Fragment>
@@ -150,13 +169,17 @@ function ModalDash({ setSelectedUser }) {
               value={user.allergies}
               change={onChange}
             />
-            <Inputs
-              label="Appointment"
-              name="appointment"
-              value={user.appointment}
-              change={onChange}
+
+            <label>Date:</label>
+
+            <DatePicker
+              onChange={dateSubmit}
+              selected={startDate}
+              showTimeSelect
+              dateFormat="d MMMM, yyyy h:mmaa"
             />
 
+            <br />
             <label for="department">Choose a department:</label>
 
             <select name="department" onChange={onChange}>

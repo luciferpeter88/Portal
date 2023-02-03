@@ -9,11 +9,13 @@ function Appointment() {
   const surgery = state.profile.department === "surgery";
   const wards = state.profile.department === "wards";
 
+  const appointment = state.profile.appointment?.split("G")[0];
+
   return (
     <div className="medicalDetails">
       <div>
         <h3>Appointment</h3>
-        <p>{state.profile.appointment}</p>
+        <p>{appointment}</p>
         <p>
           {bloodtaking ? (
             <Link to={"/department/blood-taking"}>Blood-taking</Link>
