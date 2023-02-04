@@ -29,8 +29,6 @@ router.put("/", (request, response) => {
     email,
     department,
   } = request.body;
-  console.log(name);
-  console.log(email);
 
   // update the user data in the database
   User.findOneAndUpdate(
@@ -67,6 +65,17 @@ router.put("/", (request, response) => {
       }
     }
   );
+});
+
+router.delete("/", async (request, response) => {
+  const { email } = request.query;
+  if (email !== undefined) {
+    User.deleteOne({ email: email }, function (err) {
+      if (err) return handleError(err);
+      // deleted at most one user document
+    });
+    response.send(email);
+  }
 });
 
 module.exports = router;

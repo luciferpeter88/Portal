@@ -105,8 +105,28 @@ function ModalDash({ setSelectedUser }) {
     });
   }
 
-  function deletPerson(e) {
+  async function deletPerson(e) {
+    dispatch({ type: "DASH_MODAL" });
     e.preventDefault();
+    // let formData = new FormData();
+    // // sending data to the server
+    // formData.append("email", state.selectedEmail);
+
+    try {
+      const response = await axios.delete(
+        "http://localhost:4000/dashboard?email=" + state.selectedEmail,
+        state.selectedEmail,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -196,6 +216,7 @@ function ModalDash({ setSelectedUser }) {
               className="submit-btn"
               style={{ background: "red" }}
               type="submit"
+              onClick={deletPerson}
             >
               Delete Person
             </button>
