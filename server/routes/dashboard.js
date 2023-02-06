@@ -12,7 +12,7 @@ router.get("/", async (request, response) => {
   response.send(filter);
 });
 
-router.put("/", (request, response) => {
+router.put("/", async (request, response) => {
   // get the data from the client
   const {
     name,
@@ -29,8 +29,6 @@ router.put("/", (request, response) => {
     email,
     department,
   } = request.body;
-  console.log(name);
-  console.log(email);
 
   // update the user data in the database
   User.findOneAndUpdate(

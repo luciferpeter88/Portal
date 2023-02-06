@@ -6,7 +6,7 @@ import Inputs from "./Inpits";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function ModalDash({ setSelectedUser }) {
+function ModalDash({ setSelectedUser, select }) {
   const { state, dispatch } = React.useContext(context);
   const [startDate, setStartDate] = React.useState(new Date());
 
@@ -25,25 +25,41 @@ function ModalDash({ setSelectedUser }) {
     appointment: startDate,
     department: "blood-taking",
   });
+
   console.log(user);
-  // console.log(state.selectedEmail);
+
   async function handleSubmit(e) {
     dispatch({ type: "DASH_MODAL" });
     e.preventDefault();
     let formData = new FormData();
     // sending data to the server
-    formData.append("name", user.name);
-    formData.append("phoneNum", user.phoneNum);
-    formData.append("age", user.age);
-    formData.append("location", user.location);
-    formData.append("fatherName", user.fatherName);
-    formData.append("fatherPhone", user.fatherPhone);
-    formData.append("motherName", user.motherName);
-    formData.append("motherPhone", user.motherPhone);
-    formData.append("medical", user.medical);
-    formData.append("allergies", user.allergies);
-    formData.append("appointment", user.appointment);
-    formData.append("department", user.department);
+    formData.append("name", user.name || select[0].userName);
+    formData.append("phoneNum", user.phoneNum || select[0].phoneNumber);
+    formData.append("age", user.age || select[0].personalInfo.age);
+    formData.append(
+      "location",
+      user.location || select[0].personalInfo.location
+    );
+    formData.append(
+      "fatherName",
+      user.fatherName || select[0].parentsInfo.fatherName
+    );
+    formData.append(
+      "fatherPhone",
+      user.fatherPhone || select[0].parentsInfo.fatherPhoneNum
+    );
+    formData.append(
+      "motherName",
+      user.motherName || select[0].parentsInfo.motherName
+    );
+    formData.append(
+      "motherPhone",
+      user.motherPhone || select[0].parentsInfo.motherPhoneNum
+    );
+    formData.append("medical", user.medical || select[0].medicalHistory);
+    formData.append("allergies", user.allergies || select[0].allergies);
+    formData.append("appointment", user.appointment || select[0].appointment);
+    formData.append("department", user.department || select[0].department);
     formData.append("email", state.selectedEmail);
 
     try {
@@ -196,6 +212,7 @@ function ModalDash({ setSelectedUser }) {
               className="submit-btn"
               style={{ background: "red" }}
               type="submit"
+              onClick={deletPerson}
             >
               Delete Person
             </button>

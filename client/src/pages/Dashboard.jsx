@@ -46,6 +46,7 @@ function Dashboard() {
       setSelectedUser(selectedUser);
       // send the email to the global reducer function
       dispatch({ type: "SECELTED_EMAIL", email: selectedEmail });
+      dispatch({ type: "SECELTED_USER", user: selectedUser });
       setSelected(true);
     }
   }
@@ -56,7 +57,9 @@ function Dashboard() {
 
   return (
     <React.Fragment>
-      {loading ? <ModalDash setSelectedUser={setSelectedUser} /> : null}
+      {loading ? (
+        <ModalDash setSelectedUser={setSelectedUser} select={selectedUser} />
+      ) : null}
       <div className="dashboardContainer">
         <div className="da">
           <h2>Select Patient</h2>

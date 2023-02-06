@@ -48,6 +48,7 @@ const initialState = {
   modalIsopenP: false,
   dashModal: false,
   selectedEmail: "",
+  selectedUser: "",
 };
 
 export default initialState;

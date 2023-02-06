@@ -202,6 +202,12 @@ function reducer(state, action) {
     };
   }
 
+  if (action.type === "SECELTED_USER") {
+    return {
+      ...state,
+      selectedUser: action.user,
+    };
+  }
   return state;
 }
 
