@@ -13,7 +13,7 @@ function Modal() {
     phone: "",
     avatar: "",
   });
-
+  console.log(state);
   async function handleSubmit(e) {
     dispatch({ type: "UPDATE_DATA_USER_FIRST" });
     e.preventDefault();
