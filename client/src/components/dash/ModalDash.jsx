@@ -121,8 +121,25 @@ function ModalDash({ setSelectedUser, select }) {
     });
   }
 
-  function deletPerson(e) {
+  async function deletPerson(e) {
+    dispatch({ type: "DASH_MODAL" });
     e.preventDefault();
+
+    try {
+      const response = await axios.delete(
+        "http://localhost:4000/dashboard?email=" + state.selectedEmail,
+        state.selectedEmail,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

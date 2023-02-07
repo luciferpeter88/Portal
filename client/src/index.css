@@ -668,3 +668,45 @@ input[type="file"] {
   }
 }
 /* end of dashboard */
+/* 
+games starts from here */
+.gamesCardsContainer {
+  overflow-x: hidden;
+  padding-top: 2rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--thirdaryColor);
+}
+.gamesCard {
+  background-color: #e2ecff;
+  border: 2px solid var(--secondaryColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gamesCard > img {
+  height: 30vh;
+  width: 80vw;
+}
+.gamesContainer {
+  display: flex;
+  flex-direction: column;
+}
+.gamesContainer > button {
+  margin: 1.5rem auto;
+}
+@media (min-width: 760px) {
+  .gamesCardsContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .gamesContainer {
+    width: 35%;
+  }
+}
+/* 
+end of games */

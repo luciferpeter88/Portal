@@ -66,5 +66,15 @@ router.put("/", async (request, response) => {
     }
   );
 });
+router.delete("/", async (request, response) => {
+  const { email } = request.query;
+  if (email !== undefined) {
+    User.deleteOne({ email: email }, function (err) {
+      if (err) return handleError(err);
+      // deleted at most one user document
+    });
+    response.send(email);
+  }
+});
 
 module.exports = router;
